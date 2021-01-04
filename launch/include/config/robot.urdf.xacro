@@ -31,5 +31,12 @@
     <child link="navsat_link" />
     <origin xyz="0 0 0" rpy="0 0 0" />
   </joint>
+  
+  <link name="body_FLU"> </link>
+  <joint name="body_FLU_joint" type="fixed">
+    <parent link="chassis_link" />
+    <child link="body_FLU" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
 
 </robot>
