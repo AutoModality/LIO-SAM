@@ -19,11 +19,10 @@ find_package(catkin REQUIRED COMPONENTS
   nav_msgs
   message_generation
 )
-
+find_package(GTSAM REQUIRED QUIET)
 find_package(OpenMP REQUIRED)
 find_package(PCL REQUIRED QUIET)
 find_package(OpenCV REQUIRED QUIET)
-find_package(GTSAM REQUIRED QUIET)
 
 add_message_files(
   DIRECTORY msg
