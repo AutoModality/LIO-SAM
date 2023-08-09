@@ -130,6 +130,9 @@ public:
         resetParameters();
 
         pcl::console::setVerbosityLevel(pcl::console::L_ERROR);
+
+
+        RCLCPP_INFO(get_logger(), "ImageProjection: DONE WITH SETTING UP");
     }
 
     void allocateMemory()
@@ -174,6 +177,7 @@ public:
 
     void imuHandler(const sensor_msgs::msg::Imu::SharedPtr imuMsg)
     {
+        //RCLCPP_INFO(get_logger(), "imu message is received");
         sensor_msgs::msg::Imu thisImu = imuConverter(*imuMsg);
 
         std::lock_guard<std::mutex> lock1(imuLock);
@@ -228,6 +232,7 @@ public:
             return false;
 
         // convert cloud
+        //RCLCPP_INFO(get_logger(), "converting the cloud");
         currentCloudMsg = std::move(cloudQueue.front());
         cloudQueue.pop_front();
         if (sensor == SensorType::VELODYNE || sensor == SensorType::LIVOX)
@@ -547,6 +552,8 @@ public:
 
     void projectPointCloud()
     {
+
+        //RCLCPP_INFO(this->get_logger(), "projectPointCloud: %d", __LINE__);
         int cloudSize = laserCloudIn->points.size();
         // range image projection
         for (int i = 0; i < cloudSize; ++i)

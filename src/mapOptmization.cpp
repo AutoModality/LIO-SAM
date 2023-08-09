@@ -293,6 +293,8 @@ public:
         }
 
         matP.setZero();
+
+        RCLCPP_INFO(get_logger(), "Done with memory allocation");
     }
 
     void laserCloudInfoHandler(const lio_sam::msg::CloudInfo::SharedPtr msgIn)
@@ -1658,7 +1660,7 @@ public:
         geometry_msgs::msg::TransformStamped trans_odom_to_lidar;
         tf2::convert(temp_odom_to_lidar, trans_odom_to_lidar);
         trans_odom_to_lidar.child_frame_id = "lidar_link";
-        br->sendTransform(trans_odom_to_lidar);
+        //br->sendTransform(trans_odom_to_lidar);
 
         // Publish odometry for ROS (incremental)
         static bool lastIncreOdomPubFlag = false;
